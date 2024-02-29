@@ -280,3 +280,19 @@
 
 
 })(window.jQuery);
+
+
+
+
+
+
+
+$(document).ready(function () {
+	// Smooth scroll to top when arrow is clicked
+	$('#scroll-to-top').click(function (e) {
+	  e.preventDefault();
+	  $('html, body').animate({
+		scrollTop: 0
+	  }, '300');
+	});
+  });

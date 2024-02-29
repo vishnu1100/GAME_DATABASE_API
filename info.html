@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Details</title>
+</head>
+<body>
+  <h1>Game Details</h1>
+  <div id="game-details">
+    <p><strong>Name:</strong> <span id="game-name"></span></p>
+    <p><strong>Released:</strong> <span id="game-released"></span></p>
+    <p><strong>Rating:</strong> <span id="game-rating"></span></p>
+    <p><strong>Platforms:</strong> <span id="game-platforms"></span></p>
+  </div>
+
+  <script>
+    window.onload = function() {
+      const queryParams = new URLSearchParams(window.location.search);
+      document.getElementById('game-name').textContent = queryParams.get('name');
+      document.getElementById('game-released').textContent = queryParams.get('released');
+      document.getElementById('game-rating').textContent = queryParams.get('rating');
+      document.getElementById('game-platforms').textContent = queryParams.get('platforms');
+    };
+  </script>
+</body>
+</html>
