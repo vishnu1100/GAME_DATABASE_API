@@ -208,7 +208,7 @@ function fetchData(page, query = '') {
       gameDiv.innerHTML = `
         <div class="game">
           <img id="image" src="${game.background_image}"  class="mb-3">
-          <a href="#" onclick="fetchGameDetails(${game.id})"><h2>${game.name}</h2></a>
+          <a href="#"  onclick="fetchGameDetails(${game.id})"><h2 id="link">${game.name}</h2></a>
           <p>Released: ${game.released}</p>
           <p>Rating: ${game.rating}</p>
           <p>Platforms: ${game.platforms.map(platform => platform.platform.name).join(', ')}</p>
@@ -230,7 +230,10 @@ function fetchGameDetails(gameId) {
     queryParams.set('name', data.name);
     queryParams.set('released', data.released);
     queryParams.set('rating', data.rating);
+    queryParams.set('description',data.description);
     queryParams.set('platforms', data.platforms.map(platform => platform.platform.name).join(', '));
+    queryParams.set('image',data.background_image);
+
 
     window.location.href = `info.html?${queryParams.toString()}`;
     console.log(data);

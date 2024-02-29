@@ -4,23 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game Details</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-TKxy5NwBvQiLCBm7q3F5YwejqZnz6UzszmR8Fa2r1DjGZb6axF8+JdGPuBMvQtV3VK2ePiyG4ENZB9xrii2Fuw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Add your custom styles here */
+  </style>
 </head>
 <body>
-  <h1>Game Details</h1>
-  <div id="game-details">
-    <p><strong>Name:</strong> <span id="game-name"></span></p>
-    <p><strong>Released:</strong> <span id="game-released"></span></p>
-    <p><strong>Rating:</strong> <span id="game-rating"></span></p>
-    <p><strong>Platforms:</strong> <span id="game-platforms"></span></p>
+  <div class="container">
+    <h1 class="mt-5 text-center">Game Details</h1>
+    <div id="game-details" class="mt-5">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="text-center">
+            <!-- Placeholder image -->
+            <img src="https://via.placeholder.com/200" alt="Game Image" class="img-fluid rounded">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <p><strong>Name:</strong> <span id="name"></span></p>
+          <p><strong>Released:</strong> <span id="released"></span></p>
+         
+          <p><strong>Rating:</strong> <span id="rating"></span></p>
+          <p><strong>Platforms:</strong> <span id="platforms"></span></p>
+
+          <p><strong>des:</strong> <span id="des"></span></p>
+          <p><strong>photo:</strong> <span id="image"></span></p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
     window.onload = function() {
       const queryParams = new URLSearchParams(window.location.search);
-      document.getElementById('game-name').textContent = queryParams.get('name');
-      document.getElementById('game-released').textContent = queryParams.get('released');
-      document.getElementById('game-rating').textContent = queryParams.get('rating');
-      document.getElementById('game-platforms').textContent = queryParams.get('platforms');
+      document.getElementById('name').textContent = queryParams.get('name') || "Unknown";
+      document.getElementById('released').textContent = queryParams.get('released') || "Unknown";
+      
+      document.getElementById('rating').textContent = queryParams.get('rating') || "Unknown";
+      document.getElementById('platforms').textContent = queryParams.get('platforms') || "Unknown";
+     
+      document.getElementById('des').textContent = queryParams.get('description') || "Unknown";
+      document.getElementById('image').textContent = queryParams.get('image') || "Unknown";
     };
   </script>
 </body>
