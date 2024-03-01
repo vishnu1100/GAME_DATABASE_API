@@ -187,11 +187,26 @@
 
 
 
+
+
 <script>
+
+  
+//function for displaying  the  data from api url with access token
+
+
   const apiKey = '82128c870c244c58b02d8c0a7185db22';
 
 let currentPage = 1; // Initialize current page
 let currentQuery = ''; // Initialize current search query
+
+
+
+
+
+
+
+
 
 function fetchData(page, query = '') {
   const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&page=${page}&search=${query}`;
@@ -219,13 +234,28 @@ function fetchData(page, query = '') {
   })
   .catch(error => console.error('Error fetching data:', error));
 }
+
+
+
+
+//function for pushing the fetched data to another page  
+
+
+
+
+
+
 function fetchGameDetails(gameId) {
   const apiUrl = `https://api.rawg.io/api/games/${gameId}?key=${apiKey}`;
 
   fetch(apiUrl)
   .then(response => response.json())
   .then(data => {
+
+
     // Redirect to a new page with game details as query parameters
+
+
     const queryParams = new URLSearchParams();
     queryParams.set('name', data.name);
     queryParams.set('released', data.released);
@@ -233,6 +263,21 @@ function fetchGameDetails(gameId) {
     queryParams.set('description',data.description);
     queryParams.set('platforms', data.platforms.map(platform => platform.platform.name).join(', '));
     queryParams.set('image',data.background_image);
+    queryParams.set('image2',data.background_image_additional);
+    queryParams.set('id',gameId);
+    queryParams.set('website',data.website);
+    queryParams.set('reddit',data.reddit_url);
+    // queryParams.set('requirements',data.platforms.map(platform => platform.platform.games_count).join(', '));
+    queryParams.set('minrequirements',data.platforms.map(requirements => requirements.requirements.minimum).join(', '));
+    queryParams.set('recrequirements',data.platforms.map(requirements => requirements.requirements.recommended).join(', '));
+    queryParams.set('stores',data.stores.map(store => store.store.name).join(', '));
+    queryParams.set('company',data.developers.map(developers => developers.name).join(', '));
+    queryParams.set('genre',data.genres.map(genres => genres.name).join(', '));
+    queryParams.set('tags',data.tags.map(tags => tags.name).join(', '));
+    // queryParams.set('esrb',data.esrb_rating.map(esrb_rating => esrb_rating.name).join(', '));
+   
+   
+
 
 
     window.location.href = `info.html?${queryParams.toString()}`;
